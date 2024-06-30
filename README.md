@@ -2,6 +2,10 @@
 **Web Interface for the management of placement cell of any organization. Details are given below**
 <be>
 
+### AWS Hosted Link
+http://13.53.168.150:3000/
+(Note: This link might not work as after some time I will terminate my AWS server on which website is hosted)
+
 ## Technology Used
 
 * HTML
