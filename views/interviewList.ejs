@@ -1,0 +1,127 @@
+
+
+<h2 style="margin-top: 3%; color: white; font-weight: 700;">Interviews Scheduled</h2>
+<a><button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#interview-form" id="interview-schedule-btn">Schedule Interview</button></a>
+
+<div class="modal fade" id="interview-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Interview Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/api/interviews/addInterview" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Company Name</label>
+                  <input type="text" name="companyName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword5" class="form-label">Student Name</label>
+                  <input type="text" name="applicantName" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">Student ID</label>
+                    <input type="text" name="applicantId" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">Batch ID</label>
+                    <input type="text" name="batchId" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" name="status">
+                        <option selected>Open this select menu</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Selected">Selected</option>
+                        <option value="Not Selected">Not Selected</option>
+                        <option value="On-hold">On-hold</option>
+                      </select>
+                  </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Batch ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% interviews.forEach((interview,idx)=>{ %>
+        <tr>
+            <th scope="row"><%=interview.batchId %></th>
+            <td><%=interview.applicantName%></td>
+            <td><%=interview.companyName%></td>
+            <td><%=interview.status%></td>
+            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#update-interview-<%=interview._id%>">
+              Update
+            </button></td>
+          </tr>
+
+          <div class="modal fade" id="update-interview-<%=interview._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" action="/api/interviews/<%=interview._id%>">
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Company Name</label>
+                      <input class="form-control" type="text" name="companyName" placeholder="<%=interview.companyName%>" aria-label="Disabled input example" disabled>
+                      
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Student Name</label>
+                      <input class="form-control" type="text" name="applicantName" placeholder="<%=interview.applicantName%>" aria-label="Disabled input example" disabled>
+                      
+                    </div>
+                    
+                    
+                    <div class="mb-3">
+                      <select class="form-select" aria-label="Default select example" name="status">
+                          <option selected>Open this select menu</option>
+                          <option value="In Progress">In Progress</option>
+                          <option value="Selected">Selected</option>
+                          <option value="Not Selected">Not Selected</option>
+                          <option value="On-hold">On-hold</option>
+                        </select>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+
+    <% }) %>
+      
+    </tbody>
+  </table>

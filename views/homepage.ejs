@@ -1,0 +1,32 @@
+
+<% if(!success){ %>
+    <div class="alert alert-warning" role="alert">
+        A simple warning alert—check it out!
+      </div>
+<% } %>
+
+
+
+<div>
+    <div id="homepage-view" style="margin-left: 37%; margin-top: 10%;">
+        <div>
+           
+            <% if(!locals.token) { %>
+                <div class="card" style="width: 18rem; height: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">The Placement Portal</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">schedule Interview?</h6>
+                        <p class="card-text" style="color: black; margin-top: 15%;">Welcome to Placement App</p>
+                        <p class="card-text" style="color: black;">Login to schedule the Interview for the students</p>
+                        <a href="/signin-form/" class="card-link">Signin</a>
+                        <a href="/signup-form/" class="card-link">SignUp</a>
+                        </div>
+</div>
+            <% }else{ %>
+                <div style="margin-left: -35%; padding: 7%; height: 30vh; font-size: 40px; width: 70vw; background-color: aliceblue;color: black; font-family: 'Courier New', Courier, monospace;">
+                    Welcome to the Placement App
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

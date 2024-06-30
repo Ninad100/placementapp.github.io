@@ -1,0 +1,49 @@
+
+body{
+background-image: url(Careers-new.jpg);
+height: 100vh;
+
+background-repeat: repeat-y;
+background-size: contain;
+
+}
+
+
+#homepage-joblist-view{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 7%;
+
+}
+
+#individual-job-div{
+    height: 20vh;
+    width: 25vw;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px 0px 0px 5px;
+    background-color: rgba(102, 202, 20, 0.699);
+    font-size: 30px;
+}
+
+#student-detail-model{
+    display: flex;
+    width: 30vw;
+    background-color: aliceblue;
+    margin-left: 5px;
+}
+
+#student-detail-model  span{
+    margin-top: 5px;
+    margin-left: 4px;
+    width: 200px;
+    padding-left: 3px;
+    background-color: azure;
+}
+
+#interview-schedule-btn{
+    position: absolute;
+    top: 15%;
+    left: 75%;
+}

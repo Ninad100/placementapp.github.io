@@ -1,0 +1,154 @@
+
+
+<h2 style="margin-top: 5%; margin-left: 2%; color: white;">List of Students</h2>
+<a href="/api/applicant/export/"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exportExcel" style="position: absolute; left: 80%; top: 20%;">Export to Excel</button></a>
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdropstudent" style="position: absolute; left: 70%; top: 20%;">Add a Student</button>
+
+
+<div class="modal fade" id="staticBackdropstudent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/api/applicant/addStudent" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Applicant Id</label>
+                  <input type="text" name="applicantId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="inputPassword5" class="form-label">Batch Id</label>
+                  <input type="text" name="BatchId" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">Name</label>
+                    <input type="text" name="name" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">Email</label>
+                    <input type="text" name="email" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">DSA</label>
+                    <input type="number" name="DSA" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">WebD</label>
+                    <input type="number" name="WebD" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="inputPassword5" class="form-label">React</label>
+                    <input type="number" name="React" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                  </div>
+
+                  
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<% if(applicants.length != 0){ %>
+
+
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Sr. No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% applicants.forEach((applicant,idx)=>{ %>
+        <tr>
+          <th scope="row"><%=idx+1%></th>
+          <td style="font-size: 20px;"><%= applicant.name %></td>
+          <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=applicant.applicantId%>">
+            More Details
+          </button></td>
+          <div class="modal fade" id="<%=applicant.applicantId%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div id="student-detail-model">
+                    <span>Student ID</span>
+                    <span><%=applicant.applicantId%></span>
+                  </div>
+
+                  <div id="student-detail-model">
+                    <span>Name</span>
+                    <span><%=applicant.name%></span>
+                  </div>
+
+                  <div id="student-detail-model">
+                    <span>Email ID</span>
+                    <span><%=applicant.email%></span>
+                  </div>
+
+                  <div id="student-detail-model">
+                    <span>DSA</span>
+                    <span><%=applicant.DSA%></span>
+                  </div>
+
+                  <div id="student-detail-model">
+                    <span>Web Development</span>
+                    <span><%=applicant.WebD%></span>
+                  </div>
+
+                  <div id="student-detail-model">
+                    <span>React</span>
+                    <span><%=applicant.React%></span>
+                  </div>
+                  <h5 style="margin-top: 1%;">Interview Details</h5>
+                  
+                  <% applicant.interviews.forEach((interview)=>{ %>
+                    <div id="student-detail-model">
+                      <span><%=interview.company%></span>
+                      <span><%=interview.status%></span>
+                    </div>
+
+
+                 <% }) %>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tr>
+        <% }) %>
+      </tbody>
+      
+</table>
+
+<% }else{ %>
+
+    <div class="alert alert-primary" role="alert" style="margin-top: 2%; margin-left: 2%; width: 70vw;">
+        Please add students into the Database
+      </div>
+
+<% } %>
+

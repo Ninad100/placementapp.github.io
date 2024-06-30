@@ -1,0 +1,25 @@
+
+
+<% if(!success){ %>
+  <div class="alert alert-warning" role="alert" style="top: 65%; left: 20%; position: absolute;">
+    Please enter correct credentials
+  </div>
+<% } %>
+
+<div style="margin: 10%;">
+<p style="color: white; font-weight: 700; font-size: larger;">Sign In</p>
+
+<form method="post" action="/api/employee/signin">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label" style="font-weight: 700; font-size: larger;">Email address</label>
+      <input type="email" class="form-control" required id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+      
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label" style="font-weight: 700; font-size: larger;">Password</label>
+      <input type="password" class="form-control" required name="password" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
