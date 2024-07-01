@@ -4,7 +4,7 @@
 
 ### AWS Hosted Link
 http://13.53.168.150:3000/
-(Note: This link might not work as after some time I will terminate my AWS server on which website is hosted)
+(Note: This link might not work as after evaluation I will terminate my AWS server on which website is hosted)
 
 ## Technology Used
 
